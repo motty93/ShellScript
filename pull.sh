@@ -1,0 +1,11 @@
+#!/bin/bash
+
+branch=$(git rev-parse --abbrev-ref HEAD)
+
+expect -c "
+set timeout 10
+spawn git pull origin $branch
+expect \"Enter passphrase for key '/home/user/.ssh/secret_keys/github_rsa':\"
+send \"password\n\"
+interact
+"
