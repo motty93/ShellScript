@@ -34,3 +34,30 @@ push.shも同様
 * git管理下プロジェクトでpull or pushを入力する(現在のブランチを取得して、pushとpullを行ってくれる)
 
 * ssh鍵の場所がわかる場合は `mdfind` と`locate` が書いてあるif文を削除し、直接ssh鍵のパスを入力するとよい
+
+鍵pathがわかる場合、g関数を以下へ修正
+
+```sh
+# git pull & push current branch function
+g ()
+{
+  branch=`git rev-parse --abbrev-ref HEAD`
+
+  expect -c "
+  set timeout 10
+  spawn git $1 origin $branch
+  expect {
+    \"Username for 'https://github.com': \" {
+      send \"$GITHUB_NAME\n\"
+      expect \"Password for 'https://$GITHUB_NAME@github.com': \"
+      send \"$GITHUB_PASSWORD\n\"
+    }
+    \"Enter passphrase for key '鍵path':\" {
+      send \"$SSH_PASSWORD\n\"
+    }
+  }
+
+  interact
+  "
+}
+```

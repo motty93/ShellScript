@@ -29,7 +29,6 @@ g ()
   "
 }
 
-
 export GITHUB_NAME="your_github_name"
 export GITHUB_PASSWORD="your_github_password"
 export SSH_PASSWORD="your_ssh_password"
