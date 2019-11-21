@@ -24,3 +24,13 @@ $ ./pull.sh
 ```
 
 push.shも同様
+
+## pull & pushコマンドの作成
+
+* `pull_and_push.sh`の中身を `.bashrc` or `.bash_profile` へ追記(zshを使っている場合は`.zshrc` などへ追記する)
+
+* 変数 `GITHUB_NAME`, `GITHUB_PASSWORD`, `SSH_PASSWORD`を設定する
+
+* git管理下プロジェクトでpull or pushを入力する(現在のブランチを取得して、pushとpullを行ってくれる)
+
+* ssh鍵の場所がわかる場合は `mdfind` と`locate` が書いてあるif文を削除し、直接ssh鍵のパスを入力するとよい
